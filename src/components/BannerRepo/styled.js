@@ -26,7 +26,7 @@ export const ContainerApp = styled.section`
     border-radius: 0.5rem;
     width: 90%;
     max-width: 960px;
-    color: #333;
+    color: #21262d;
   }
   .user-info {
     display: flex;
@@ -73,27 +73,45 @@ export const ContainerApp = styled.section`
     width: 80%;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid #c9d1d9;
   }
  form button {
    
     height: 35px;
     border-radius: 0.5rem;
-    border: 1px solid #ccc;
-    background-color: #333;
+    border: 1px solid #c9d1d9;
+    background-color: #21262d;
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
   }
   form button:hover {
-    background-color: #ccc;
+    background-color: #c9d1d9;
   }
  form button:disabled {
-    background-color: #ccc;
-    color: #333;
+    background-color: #c9d1d9;
+    color: #21262d;
     cursor: not-allowed;
   }
  form button:disabled:hover {
-    background-color: #333;
+    background-color: #21262d;
+  }
+  @media (max-width: 768px) {
+    header {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    main {
+        width: 75%;
+        display: flex ;
+        flex-direction: column;
+    }
+    form {
+        width: 85%;
+    }
+    form button {
+        margin-left: 0.5rem;
+    }
   }
 `;

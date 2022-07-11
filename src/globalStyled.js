@@ -8,7 +8,7 @@ export const GlobalStyled = createGlobalStyle`
     font-size: 16px;
     line-height: 1.5;
     color: #333;
-    background-color: #000;
+    background-color: #30363d;
   }
   a {
     color: #333;

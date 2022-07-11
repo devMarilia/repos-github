@@ -3,6 +3,7 @@ import React from "react";
 import { ContainerApp } from "./styled";
 
 
+
 export default function BannerRepo() {
   const [search, setSearch] = React.useState("");
   const [name, setName] = React.useState("");
@@ -10,31 +11,31 @@ export default function BannerRepo() {
   const [avatar, setAvatar] = React.useState("");
   const [followers, setFollowers] = React.useState(0);
 
-  function msgerror() {
-    document.getElementById("msg-error").style.display = "block";
-
-    setTimeout(function () {
-      document.getElementById("msg-error").style.display = "none";
-    }, 3000);
-    clear();
-  }
+ 
 
   function clear() {
     setSearch("");
     setName("");
     setBio("");
-    setAvatar("");
-    setFollowers(0);
   }
+
+
 
   function validateFields() {
     if (search === "") {
-      msgerror();
+      document.getElementById("msg-error").style.display = "block";
+      document.getElementById("msg-error").innerHTML = "Preencha o campo de busca";
       return false;
     } else if (search.length < 3) {
-      alert("O campo de busca deve conter no mínimo 3 caracteres");
-      return false;
+      document.getElementById("msg-error").style.display = "block"; 
+      document.getElementById("msg-error").innerHTML = "Preencha o campo de busca com pelo menos 3 caracteres";
+    } else if (search.length > 3) {
+      document.getElementById("msg-error").style.display = "none";
+      return true;
     } else {
+      clear({
+        search,
+      })
       return true;
     }
   }
@@ -50,15 +51,21 @@ export default function BannerRepo() {
           setAvatar(response.data.avatar_url);
           setFollowers(response.data.followers);
           console.log(response.data);
-        
         })
         .catch((error) => {
-          alert("Erro ao buscar usuário");
+          document.getElementById("msg-error").style.display = "block";
+          document.getElementById("msg-error").innerHTML = "Usuário não encontrado";
+          clear(
+            setSearch(""),
+          )
           console.log(error);
-        
         });
     }
   };
+
+
+
+
 
   return (
     <ContainerApp>
@@ -69,16 +76,20 @@ export default function BannerRepo() {
           <form>
          
             <input
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)  }
               type="text"
               placeholder="Buscar repos"
+              name="search"
+              value={search}
             />
-            <button onClick={handleSearch} type="submit">
+            <button 
+            onClick={handleSearch} 
+            type="submit"
+            >
               Buscar
             </button>
           </form>
           <div id="msg-error" className="msg-error">
-          Usuário não encontrado
         </div>
       </header>
      
