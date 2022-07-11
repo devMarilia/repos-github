@@ -1,4 +1,4 @@
-import BannerRepo from "./BannerRepo";
+import BannerRepo from "../src/components/BannerRepo";
 import { GlobalStyled } from "./globalStyled";
 
 function App() {
